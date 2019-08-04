@@ -4,9 +4,16 @@
 }
 
 .frank-portrait {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
+}
+
+@media (min-width: 768px) {
+  .frank-portrait {
+    display: block;
+  }
 }
 
 .home-link {
@@ -51,6 +58,7 @@ h2, p { padding: 0 2rem; }
 }
 
 .speech-bubble {
+  display: none;
   position: absolute;
   top: 0;
   right: 12rem;
@@ -63,6 +71,25 @@ h2, p { padding: 0 2rem; }
 .speech-bubble p {
   text-align: center;
   font: 34px/85px sans-serif;
+  padding-left: 5%;
+}
+
+@media (min-width: 1050px) {
+  .speech-bubble {
+    display: block;
+  }
+}
+
+.forecast {
+  text-align: center;
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+
+@media (min-width: 1050px) {
+  .forecast {
+    display: none;
+  }
 }
 
 .feature {

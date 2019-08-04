@@ -4,6 +4,8 @@
 
 <h2>Frank says the weather will be:</h2>
 
+<h3 class="forecast"><%= @data.weather.first[:main] %></h3>
+
 <div class="speech-bubble">
   <p><%= @data.weather.first[:main] %>!</p>
 </div>
