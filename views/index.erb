@@ -1,3 +1,16 @@
+<% if message %>
+  <div class="message">
+    <p>Sorry, Frank couldn't find the weather.</p>
+    <p>Try using these combos:</p>
+    <ul>
+      <li>New York, US</li>
+      <li>Shanghai, CN</li>
+      <li>Paris, FR</li>
+    </ul>
+    <p>Better luck next time, kid.</p>
+  </div>
+<% end %>
+
 <h1>Welcome to Frank Weather</h1>
 
 <h2>The app where Frank tells you the weather, frankly.</h2>
@@ -16,7 +29,7 @@
 
     <label>Country Code</label>
     <input type="text" name="country" placeholder="UK" />
-    
+
     <input type="submit" value="Submit" />
   </form>
 </div>

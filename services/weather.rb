@@ -30,6 +30,7 @@ class Weather
 
   def fetch_weather
     @data = API.get(endpoint)
+
     self
   end
 
