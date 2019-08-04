@@ -4,7 +4,7 @@ require 'net/http'
 require 'json'
 
 ##
-# Service for processing API requests to OMDB
+# Service for processing API requests to OpenWeatherMap
 #
 class ApiRequest
   API_PATH = 'https://api.openweathermap.org/data/2.5'.freeze
@@ -21,30 +21,21 @@ class ApiRequest
   end
 
   def get(query)
-    @url = URI(@api_path + query)
-    response = send_request(get_request)
-    parse_response(response)
-  end
-
-  protected
-
-  def hostname
-    @url.hostname
-  end
-
-  def port
-    @url.port
+    get_response(query)
   end
 
   private
 
-  def get_request
-    Net::HTTP::Get.new(@url, HEADERS)
+  def get_response(query)
+    uri = URI(@api_path + query)
+    req = Net::HTTP::Get.new(uri.request_uri)
+    resp = http_response(req, uri)
+    parse_response(resp)
   end
 
-  def send_request(request)
-    Net::HTTP.start(hostname, port, use_ssl: true) do |http|
-      http.request(request)
+  def http_response(req, uri)
+    Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      http.request(req)
     end
   rescue StandardError => e
     puts 'An error occurred while sending this request'
@@ -52,10 +43,10 @@ class ApiRequest
   end
 
   # Eval and parse http response
-  def parse_response(response)
-    return response unless response.respond_to?(:body)
+  def parse_response(resp)
+    return resp unless resp.respond_to?(:body)
 
-    JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(resp.body, symbolize_names: true)
   rescue StandardError => e
     puts "Error parsing response from #{api_path}"
     handle_error(e)
