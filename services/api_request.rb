@@ -28,7 +28,7 @@ class ApiRequest
 
   def get_response(query)
     uri = URI(@api_path + query)
-    req = Net::HTTP::Get.new(uri.request_uri)
+    req = Net::HTTP::Get.new(uri.request_uri, HEADERS)
     resp = http_response(req, uri)
     parse_response(resp)
   end
