@@ -4,10 +4,13 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'erb'
 require 'json'
-require 'uri'
+require 'cgi'
 
 require_relative 'env'
 require './services/weather'
+
+# Load Images
+# Dir['./images/*.jpg'].each { |file| require file }
 
 set :raise_errors, true
 set :show_exceptions, false
@@ -15,7 +18,7 @@ set :message, false
 
 get '/' do
   if params[:city] && params[:country]
-    redirect "/weather/#{params[:city]}/#{params[:country]}"
+    redirect "/weather/#{CGI.escape(params[:city])}/#{params[:country]}"
   end
 
   erb :index, locals: { message: settings.message }
@@ -40,4 +43,9 @@ get '/weather-data/:city/:country' do
   data = Weather.call(params).data
 
   JSON.pretty_generate(data)
+end
+
+error do
+  settings.message = true
+  redirect '/'
 end

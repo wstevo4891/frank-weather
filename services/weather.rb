@@ -1,6 +1,7 @@
 # services\weather.rb
 
 require_relative 'api_request'
+require 'cgi'
 require 'ostruct'
 
 # Service for building OpenStruct with weather data
@@ -29,6 +30,7 @@ class Weather
   private
 
   def fetch_weather
+    puts endpoint
     @data = API.get(endpoint)
 
     self

@@ -1,6 +1,12 @@
-<h1><%= @data.name %></h1>
+<a class="home-link" href="/">Back to Home</a>
 
-<h2>Frank says the weather is: <%= @data.weather.first[:main] %></h2>
+<h1 class="weather-header"><%= @data.name %></h1>
+
+<h2>Frank says the weather will be:</h2>
+
+<div class="speech-bubble">
+  <p><%= @data.weather.first[:main] %>!</p>
+</div>
 
 <div class="grid-row">
   <div class="grid-item">
