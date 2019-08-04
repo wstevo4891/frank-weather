@@ -1,6 +1,5 @@
 # app/services/omdb_api/api_request.rb
 
-require 'uri'
 require 'net/http'
 require 'json'
 
@@ -8,8 +7,6 @@ require 'json'
 # Service for processing API requests to OMDB
 #
 class ApiRequest
-  API_KEY = ENV['API_KEY']
-
   API_PATH = 'https://api.openweathermap.org/data/2.5'.freeze
 
   HEADERS = {
@@ -20,13 +17,12 @@ class ApiRequest
 
   def initialize
     @api_path = API_PATH
-    @api_key = API_KEY
+    @api_key = ENV['API_KEY']
   end
 
   def get(query)
     @url = URI(@api_path + query)
-    request = get_request
-    response = send_request(request)
+    response = send_request(get_request)
     parse_response(response)
   end
 
@@ -47,9 +43,6 @@ class ApiRequest
   end
 
   def send_request(request)
-    # Net::HTTP.start(hostname, port, use_ssl: true) do |http|
-    #   http.request(request)
-    # end
     Net::HTTP.start(hostname, port, use_ssl: true) do |http|
       http.request(request)
     end
