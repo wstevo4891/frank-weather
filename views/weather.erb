@@ -1,0 +1,66 @@
+<h1><%= @data.name %></h1>
+
+<h2>Weather Today: <%= @data.weather.first[:main] %></h2>
+
+<div class="grid-row">
+  <div class="grid-item">
+    <div class="card">
+      <h3>Temperature</h3>
+      <p><%= @data.main[:temp] %></p>
+      <p>High: <%= @data.main[:temp_max]%><p>
+      <p>Low: <%= @data.main[:temp_min] %></p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Pressure</h3>
+      <p><%= @data.main[:pressure] %></p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Humidity</h3>
+      <p><%= @data.main[:humidity] %></p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Visibility</h3>
+      <p><%= @data.visibility %></p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Wind</h3>
+      <p>Speed: <%= @data.wind[:speed] %></p>
+      <p>Degree: <%= @data.wind[:deg] %></p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Coordinates</h3>
+      <p>Longitude: <%= @data.coord[:lon] %> deg</p>
+      <p>Latitude: <%= @data.coord[:lat] %> deg</p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Timezone</h3>
+      <p><%= @data.timezone %></p>
+    </div>
+  </div>
+
+  <div class="grid-item">
+    <div class="card">
+      <h3>Sun Movements</h3>
+      <p>Sunrise: <%= @data.sys[:sunrise] %></p>
+      <p>Latitude: <%= @data.sys[:sunset] %></p>
+    </div>
+  </div>
+</div>

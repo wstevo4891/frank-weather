@@ -1,1 +1,2 @@
+# Ignore secret environment variables
 env.rb
